@@ -1,5 +1,4 @@
 const express = require('express');
-const keep_alive = require('./keep_alive.js')
 
 const app = express();
 
@@ -33,7 +32,7 @@ const bot = new Client({ intents });
 
 bot.once('ready', () => {
     console.log('Bot is ready.');
-    bot.user.setActivity('Developer : Hyper Krypton , w dima nikom garena spam')
+    bot.user.setActivity('Developer : Hyper , Please dont compare me with ( garena spam ) she is my b*tch')
 });
 
 
@@ -96,16 +95,12 @@ bot.on('messageCreate', async (message) => {
 
 const successEmbed = new MessageEmbed()
     .setColor("BLACK")
-    .setTitle("Kill Sent")
-    .setDescription('**__✅ root@127.0.0.1: Krypton Zombies#~ sent Kill ✅__**')
-    .addField('👩‍💻 `[User]`', `<@${message.author.id}>`, true) 
-    .addField('⚡ `[Ip]`', `**__${input1}__**`, true) 
-    .addField('⚡ `[Port]`', `**__${input2}__**`, true) 
-    .addField('⌛ `[Time]`', `**__${input3} Secondes__**`, true) 
-    .addField('💸 `[Vip]`', `**__Yes__**`, true) 
-    .addField('🛡 `[Method]`', `**__${input4}__**`, true)
+    .setTitle('Attack Sent')                .setDescription('root@127.0.0.1: CyberDemon#~ sent attack')
+    .setColor('#2F3136')                    .addField('Target:', `${input1}:${input2}`, true)           
+    .addField('Duration', `${input3} seconds`, true)
+    .addField('Method', `${input4}`, true)
     .setAuthor(message.author.tag, message.author.displayAvatarURL())
-    .setImage('https://cdn.discordapp.com/attachments/1210923346242306128/1211267762698063973/IMG_20240224_170904_272.jpg?ex=65ed9402&is=65db1f02&hm=4a2970bae730591dfe6a1b42f9855b0eb043dac7c810e32b7ac7b0bdeb6320c3&')
+    .setImage('https://media.discordapp.net/attachments/1213902876913569874/1213907168282284043/kmc_20240303_185007.png?ex=65f72e26&is=65e4b926&hm=3e3d5eb21260ddfc1aa6cf4395ca99661c458911a969a29af17c614bfc74e47a&')
     .setTimestamp();
 
 
@@ -137,45 +132,24 @@ function channelCheck(message) {
 
 
 
-bot.on('interactionCreate', async (interaction) => {
-    if (!interaction.isButton()) return;
 
-    if (interaction.customId === 'methodsButton') {
+bot.on('messageCreate', async (message) => {
+    if (message.author.bot) return;
+
+    if (message.content === '!help') {
         const methodsList = [
-            "**-------TCP-------**",
-            "TCP-ACK - L4",
-            "TCP-NFO - L4",
-            "TCP-TFO - L4",
-            "TCP-OVHv3 - L4",
-            "TCP-BYPASS - L4",
-            "TCP-SYN - L4",
-            "TCP-FIVEM - L4",
-            "**-------UDP-------**",
-            "UDP-RAW - L4",
-            "UDP-RAKNET - L4",
-            "UDP-SAMP - L4",
-            "UDP-FREEFIRE - L4",
-            "**-------AMP-------**",
-            "AMP-STUN - L4",
-            "AMP-DNS  - L4",
-            "**-------L7-------**",
-            "HTTP-SOCKET - L7",
-            "HTTP-CRANK - L7",
-            "HTTP-FLAG - L7",
-            "HTTP-BROWSER - L7",
-            "HTTP-PLUG - L7",
-            "HTTP-BYPASS - L7",
+            "!kill IP PORT DURATION FORTNITE - Ping Destroyer",
         ];
 
-        const methodsFormatted = methodsList.map(method => `${method}`).join('\n');
+        const methodsFormatted = methodsList.map(method => `\`${method}\``).join('\n');
 
         const embed = new MessageEmbed()
-            .setTitle("Available Methods")
-            .setDescription("root@127.0.0.1: CyberSecurityKrypton#~ showing all available methods")
+            .setTitle("Help Center")
+            .setDescription("root@127.0.0.1: CyberDemon#~ showing all commands available")
             .setColor('#2F3136')
             .addField("Methods", methodsFormatted, false);
 
-        await interaction.update({ embeds: [embed], components: [], ephemeral: true });
+        await message.reply({ embeds: [embed] });
     }
 });
 
